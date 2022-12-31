@@ -1,5 +1,5 @@
 # README
-
+Simple solution for getting weather info from BME280 sensor, connected to Arduino Nano RP2040 Connect, pushing it to a MQTT broker (RabbitMQ MQTT) and getting that data to InfluxDB via Telegraf subscribing to MQTT.
 ## Overview
 ![Overview Diagram](diagram.png)
 
