@@ -12,10 +12,11 @@ docker run -d --name=influxdb -p 8086:8086 -v  /tmp/testdata/influx:/root/.influ
 docker run -d -v $PWD/telegraf.conf:/etc/telegraf/telegraf.conf:ro telegraf
 ```
 
+You need a InfluxDB API token, here is a [description how to get one](https://docs.influxdata.com/influxdb/cloud/security/tokens/create-token/).
+
 ## To Do
 - [ ] Move docker configuration to docker compose
 - [ ] Add Arduino wiring sketch
 - [ ] Connect Graphana to InfluxDB
 - [ ] Refactor weather_sensor code
 
-You need a InfluxDB API token, here is a [description how to get one](https://docs.influxdata.com/influxdb/cloud/security/tokens/create-token/).
