@@ -5,6 +5,7 @@
 #include <Arduino_LSM6DSOX.h>
 #include <WiFiNINA.h>
 #include <ArduinoMqttClient.h>
+#include <Arduino_JSON.h>
 #include "arduino_secrets.h"
 
 char ssid[] = SECRET_SSID;
@@ -22,6 +23,8 @@ const char topic[] = "test";
 Adafruit_BME280 bme;
 
 unsigned long delayTime = 3000;
+
+JSONVar payload;
 
 void setup() {
   Serial.begin(9600);
@@ -64,14 +67,20 @@ void setup() {
 void loop() { 
   mqttClient.poll();
   mqttClient.beginMessage(topic);
-  mqttClient.print("{\"location\":\"office\",\"temp\":");
-  mqttClient.print(bme.readTemperature());
-  mqttClient.print(",\"humidity\":");
-  mqttClient.print(bme.readHumidity());
-  mqttClient.print("}");
+
+  payload["location"] = "office";
+  payload["temp"] = round2(bme.readTemperature());
+  payload["humidity"] = round2(bme.readHumidity());
+
+  Serial.println(JSON.stringify(payload));
+  mqttClient.print(JSON.stringify(payload));
   mqttClient.endMessage();
 
   delay(delayTime);
+}
+
+double round2(float value) {
+   return (int)(value * 100 + 0.5) / 100.0;
 }
 
 void printWifiStatus() {
