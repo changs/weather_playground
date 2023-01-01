@@ -19,4 +19,5 @@ You need a InfluxDB API token, here is a [description how to get one](https://do
 - [ ] Add Arduino wiring sketch
 - [ ] Connect Graphana to InfluxDB
 - [ ] Refactor weather_sensor code
+    - [ ] Use a JSON object instead of string
 
